@@ -1,0 +1,19 @@
+extends layout
+block content
+    if error
+        p.text-error= error
+    .row
+        .list-group.col-lg-6
+            each val in categories
+                a(href='/notes/' + val.name).list-group-item.list-group-item-info= val.name
+                    if val.notes
+                        span.badge= val.notes.length
+                    else
+                        span.badge 0
+    .row
+        if newCategoryError
+            p.text-warning= newCategoryError
+        form(action='/newCategory', role='form', method='post').form-inline
+            input(type='text', name='categoryName', placeholder='Category Name').form-control
+            input(type='submit', value='New Category').btn.btn-primary
+

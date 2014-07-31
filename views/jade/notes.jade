@@ -1,0 +1,30 @@
+extends layout
+block content
+    div(ng-app='notesView')
+        a.btn.btn-info(href='/') Back
+        div(ng-controller='notesViewController')
+            div.note(ng-repeat='n in notes', ng-class="{'note-yellow' : n.color == 'yellow', 'note-blue' : n.color == 'blue', 'note-green' : n.color == 'green', 'note-orange' : n.color == 'orange'}")
+                div {{ n.note }}
+                div.note-author
+                    small - {{ n.author }}
+            form.form-horizontal(role='form', name='newNoteForm' ng-submit='save()')
+                .form-group
+                    label.control-label.col-lg-1 Color
+                    .col-lg-5
+                        .btn-group
+                            button.btn.btn-primary(type='button', ng-model='newNote.color', btn-radio="'yellow'") Yellow
+                            button.btn.btn-primary(type='button', ng-model='newNote.color', btn-radio="'blue'") Blue
+                            button.btn.btn-primary(type='button', ng-model='newNote.color', btn-radio="'green'") Green
+                            button.btn.btn-primary(type='button', ng-model='newNote.color', btn-radio="'orange'") Orange
+                .form-group
+                    label.control-label.col-lg-1 Content
+                    .col-lg-5
+                        textarea.form-control(cols='30', rows='2', name='note', ng-model='newNote.note', placeholder='Type your note here', required='required', maxlength='120')
+                        span(ng-show='newNoteForm.note.$error.required') Note is required
+                        p {{ 120 - newNote.note.length }} characters left.
+                .form-group
+                    .col-lg-offset-1.col-lg-5
+                        input.btn.btn-primary(type='submit', value='Save', ng-disabled='newNoteForm.$invalid')
+block scripts
+    script(src='/lib/socket.io-client/dist/socket.io.min.js')
+    script(src='/js/notesView.js')

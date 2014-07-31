@@ -1,0 +1,21 @@
+{
+  "name": "TheBoard",
+  "version": "0.1.0",
+  "description": "Boardi",
+  "main": "server.js",
+  "author": {
+    "name": "Jarmo Jokela",
+    "email": "jarmo.jokela@gmail.com"
+  },
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.0.1",
+    "express": "^4.0.0",
+    "express-session": "^1.0.3",
+    "jade": "^1.3.1",
+    "mongodb": "^1.4.0",
+    "socket.io": "^0.9.16",
+    "underscore": "^1.6.0"
+  }
+}
